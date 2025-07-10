@@ -7,7 +7,8 @@ import { Template } from "../entity/template";
 import { Phone } from "../entity/phone";
 dotenv.config();
 
-export const AppDataSource = new DataSource({
+// Only create DataSource if database URL is provided
+export const AppDataSource = process.env.PG_DATABASE_URL ? new DataSource({
   url: process.env.PG_DATABASE_URL,
   ssl: {
     rejectUnauthorized: false,
@@ -18,7 +19,7 @@ export const AppDataSource = new DataSource({
   entities: [User, Button, Template, Phone],
   migrations: [],
   subscribers: [],
-});
+}) : null;
 
 // export const AppDataSource = new DataSource({
 //   type: "postgres",

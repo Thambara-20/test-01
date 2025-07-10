@@ -114,4 +114,15 @@ export const Routes = [
     action: "getButtonById",
     middleware: [],
   },
+  {
+    method: "get",
+    route: "/health",
+    controller: class {
+      health() {
+        return { status: "ok", timestamp: new Date().toISOString() };
+      }
+    },
+    action: "health",
+    middleware: [],
+  },
 ];
